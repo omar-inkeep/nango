@@ -7,7 +7,7 @@ import { LogActionEnum } from '../models/Telemetry.js';
 import connectionsManager from '../services/connection.service.js';
 import { NangoError } from '../utils/error.js';
 import errorManager, { ErrorSourceEnum } from '../utils/error.manager.js';
-import { makeUrl } from '../utils/utils.js';
+import { interpolateObjectValues, makeUrl } from '../utils/utils.js';
 
 import type { ServiceResponse } from '../models/Generic.js';
 import type { Config as ProviderConfig } from '../models/index.js';
@@ -122,9 +122,9 @@ export async function getFreshOAuth2Credentials({
 
     let additionalParams = {};
     if (provider.refresh_params) {
-        additionalParams = provider.refresh_params;
+        additionalParams = interpolateObjectValues(provider.refresh_params as Record<string, string | undefined>, connection.connection_config);
     } else if (provider.token_params) {
-        additionalParams = provider.token_params;
+        additionalParams = interpolateObjectValues(provider.token_params as Record<string, string | undefined>, connection.connection_config);
     }
 
     let rawNewAccessToken: AccessToken;

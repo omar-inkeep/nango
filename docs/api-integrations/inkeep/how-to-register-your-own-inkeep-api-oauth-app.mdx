@@ -1,0 +1,51 @@
+---
+title: 'How to register your own Inkeep API OAuth app'
+sidebarTitle: 'Inkeep Setup'
+description: 'Register an OAuth app with Inkeep and connect it to Nango'
+---
+
+This guide shows you how to register your own app with Inkeep to obtain your OAuth credentials (client id & secret). These are required to let your users grant your app access to their Inkeep account.
+
+<Note>Creation of OAuth Applications for the Inkeep API is not self-service. You'll need to contact the Inkeep team to set one up.</Note>
+
+<Steps>
+  <Step title="Request OAuth application">
+    Contact the Inkeep team at [support@inkeep.com](mailto:support@inkeep.com) to request an OAuth application.
+    
+    Provide the following required information:
+    - **Name**: How you want your app identified to your customers (most likely your company/product name)
+    - **Redirect URI**: `https://api.nango.dev/oauth/callback`
+    - **Scopes**: The set of data your application needs access to (e.g., `openid`, `profile`, `email`, `offline_access`, `agents`)
+  </Step>
+  <Step title="Receive your credentials and API URLs">
+    Once your OAuth application is created, Inkeep will provide you with:
+    - **Client ID**
+    - **Client Secret**
+    - **Manage API URL** - The OAuth/Auth server URL (e.g., `https://manage-api.inkeep.com`)
+
+   You'll need all of these when configuring the integration in Nango.
+  </Step>
+  <Step title="Configure in Nango">
+    In your [Nango dashboard](https://app.nango.dev/dev/integrations), go to the Inkeep integration and enter your Client ID and Client Secret.
+  </Step>
+  <Step title="Next">
+    Follow the [_Quickstart_](/getting-started/quickstart) to connect your first account.
+  </Step>
+</Steps>
+
+## Connection Configuration
+
+When creating a connection to Inkeep, you'll need to provide the following configuration:
+
+| Field | Description | Example |
+| ----- | ----------- | ------- |
+| `manageApiUrl` | The URL of your Inkeep Manage API (OAuth/Auth server) | `https://manage-api.inkeep.com` |
+
+These URLs are used to:
+- **Manage API URL**: Handle OAuth authorization and token exchange
+
+<Note>The Inkeep team will provide you with your specific API URL when they create your OAuth application.</Note>
+
+For more details, see the [Inkeep API documentation](https://docs.inkeep.com).
+
+---
